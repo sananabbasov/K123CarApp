@@ -18,7 +18,7 @@ using ConsoleUI.Models;
 Car bmw = new()
 {
     CarName = "X5",
-    Fuel = 0,
+    Fuel = 20,
     MaxFuel = 50,
     Millage = 18,
     FuelMillage = 10
@@ -56,9 +56,9 @@ switch (userInput)
     case 1:
         try
         {
-            Console.Clear();
             Console.Write("Write km: ");
             decimal userKm = Convert.ToDecimal(Console.ReadLine());
+            Console.Clear();
             manager.Start(bmw, userKm);
         }
         catch (Exception error)
@@ -70,9 +70,20 @@ switch (userInput)
 
         break;
     case 2:
+        try
+        {
+            Console.Clear();
+            Console.Write("Write litr: ");
+            decimal fuelLitr = Convert.ToDecimal(Console.ReadLine());
+            manager.GetFuel(bmw, fuelLitr);
+        }
+        catch (Exception error)
+        {
+            ErrorManager.ErrorHandler(error.Message);
+            Console.WriteLine("Something is wrong. Try again.");
+            goto Evvele;
+        }
 
-
-        Console.Clear();
         break;
     case 3:
         Console.Clear();
